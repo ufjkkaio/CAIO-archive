@@ -1,11 +1,20 @@
 @charset "utf-8";
 
+/* CSSの1行目にこれを書く。@mediaの中には入れない！ */
 * {
-  text-decoration: none !important;
-  color: inherit; /* 親の文字色を引き継ぐ */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body, main {
+/* その下にこれを追加 */
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+body {
   font-family: 'Courier New', Courier, monospace;
   width: 100%;
   margin-right: 10px;
@@ -17,20 +26,38 @@ h1 {
   text-align: center;
 }
 
-.content-box {
+/* .content-box {
   display: block;
   border: 1px solid black;
   width: 27%;
   padding: 10px;
+} */
+
+/* 2. 親要素を整える */
+main {
+  display: grid;
+  /* 画面幅いっぱいに広げず、最大幅を決めて中央に寄せるのがプロの手法や */
+  max-width: 1200px; 
+  margin: 0 auto; /* これが左右中央寄せの黄金ルール */
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center; /* グリッド全体を中央に寄せる */
+}
+
+/* 3. 子要素（箱） */
+.content-box {
+  width: 100%; /* 親のグリッド幅に合わせる */
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0; /* 親がgridなら、子にmarginはいらん */
 }
 
 img {
   display: block;
   width: 100%;
   height: auto;
-  /* margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px; */
+  /*margin-top: 5px; */
 }
 
 .explain {
@@ -46,3 +73,20 @@ a:hover {
   opacity: 0.7;
 }
 
+/* 4. レスポンシブ（スマホ用） */
+@media screen and (max-width: 750px) {
+  .content-box {
+    width: 90%; /* スマホでは画面の9割を使う */
+  }
+}
+
+/* 以下、aタグやimgの指定はそのままでOK */
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  text-align: center;
+}
