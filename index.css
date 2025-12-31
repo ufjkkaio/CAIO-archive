@@ -1,92 +1,68 @@
 @charset "utf-8";
 
-/* CSSの1行目にこれを書く。@mediaの中には入れない！ */
+/* 1. リセット：全要素の計算を統一 */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* その下にこれを追加 */
+/* 2. 土台：はみ出しを許さない */
 html, body {
   overflow-x: hidden;
-  position: relative;
   width: 100%;
 }
 
 body {
   font-family: 'Courier New', Courier, monospace;
-  width: 100%;
-  margin-right: 10px;
-  margin-left: 10px;
+  /* 左右のマージンはここで指定せず、main側で制御する */
 }
 
 h1 {
   font-weight: bold;
   text-align: center;
+  padding: 40px 0;
 }
 
-/* .content-box {
-  display: block;
-  border: 1px solid black;
-  width: 27%;
-  padding: 10px;
-} */
-
-/* 2. 親要素を整える */
+/* 3. メイン：ここがガレージの広さを決める */
 main {
   display: grid;
-  /* 画面幅いっぱいに広げず、最大幅を決めて中央に寄せるのがプロの手法や */
-  max-width: 1200px; 
-  margin: 0 auto; /* これが左右中央寄せの黄金ルール */
-  padding: 20px;
+  max-width: 1200px; /* PCでの最大幅 */
+  margin: 0 auto;    /* 左右中央寄せ */
+  padding: 20px;     /* スマホでもここが左右の余白になる */
+  /* カラムの設定：300pxを下回ったら自動で縦に並ぶ */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  justify-content: center; /* グリッド全体を中央に寄せる */
+  justify-content: center;
 }
 
-/* 3. 子要素（箱） */
+/* 4. 実績箱：Gridに従うのでwidthはいらん */
 .content-box {
-  width: 100%; /* 親のグリッド幅に合わせる */
   border: 1px solid black;
-  padding: 10px;
-  margin: 0; /* 親がgridなら、子にmarginはいらん */
+  padding: 15px;
+  background-color: #fff; /* 後でここをいじればカッコよくなる */
 }
 
+/* 画像とリンクの設定 */
 img {
   display: block;
   width: 100%;
   height: auto;
-  /*margin-top: 5px; */
-}
-
-.explain {
-  line-height: 27px;
+  margin-bottom: 10px;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
 a:hover {
   opacity: 0.7;
 }
 
-/* 4. レスポンシブ（スマホ用） */
-@media screen and (max-width: 750px) {
-  .content-box {
-    width: 90%; /* スマホでは画面の9割を使う */
+/* 5. スマホ用微調整：Gridを1列に強制したい場合のみ */
+@media screen and (max-width: 400px) {
+  main {
+    grid-template-columns: 1fr; /* 狭いスマホでは1列 */
   }
-}
-
-/* 以下、aタグやimgの指定はそのままでOK */
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-h1 {
-  text-align: center;
 }
