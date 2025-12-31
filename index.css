@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+* {
+  text-decoration: none !important;
+  color: inherit; /* 親の文字色を引き継ぐ */
+}
+
+body, main {
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.content-box {
+  display: block;
+  border: 1px solid black;
+  width: 27%;
+  padding: 10px;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px; */
+}
+
+.explain {
+  line-height: 27px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
